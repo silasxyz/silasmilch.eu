@@ -1,16 +1,184 @@
 /*************************************************************************
- * This css file is for your own style.
+ * Eigene Styles für silasmilch.eu
+ *
+ * Editorial, linksbündig: leichte Kopfzeile statt dunklem Balken, große
+ * Namens-Typografie, schmale Lesespalte, Weißraum statt Rahmen.
+ * Regeln und Begründungen: .claude/skills/design/SKILL.md
+ *
+ * frame.css und controls.css sind Upstream und werden hier nur überschrieben,
+ * nie editiert.
  *************************************************************************/
+
+/*************************************************************************
+ * 1. Kopfzeile
+ *
+ * Das Template liefert einen durchgehend dunklen #333333-Balken mit
+ * schwerem Schatten. Ersetzt durch eine ruhige Zeile mit Haarlinie.
+ *************************************************************************/
+
+.menu-container {
+  background-color: #ffffff;
+  box-shadow: none;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+html.dark-mode .menu-container {
+  background-color: #121212;
+  box-shadow: none;
+  border-bottom-color: #2a2a2a;
+}
+
+/* Eine Spaltenbreite für die ganze Seite. Das Template setzt 900px für
+   Kopfzeile und Inhalt, während der Fließtext auf 68ch (~605px) gedeckelt
+   ist — dadurch hat die Seite keine gemeinsame rechte Kante. 660px abzüglich
+   der 20px Innenabstände entspricht ziemlich genau der Lesespalte, damit
+   Logo, Überschriften, Trennlinien und Text alle bündig stehen. */
+.menu,
+.content {
+  max-width: 660px;
+}
+
+.menu .menu-table {
+  padding: 0 20px;
+}
+
+.menu .logo {
+  margin-left: 0;
+}
+
+.menu .logo a {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #333333;
+  padding: 12px 0;
+}
+
+html.dark-mode .menu .logo a {
+  color: #f2f2f2;
+}
+
+/* Social-Icons: gedämpft, Akzentfarbe erst beim Hover. */
+/* .menu-items trägt die Klasse flex-item und erbt dadurch margin: 0 20px.
+   Das schöbe die Icons 20px weiter nach innen als das Logo auf der linken
+   Seite — der Header wäre asymmetrisch. Das negative rechte Margin gleicht
+   zusätzlich das 8px-Padding des letzten Icons aus, damit die sichtbare
+   Icon-Kante exakt mit der Textkante des Logos fluchtet. */
+.menu .menu-items {
+  margin: 0 -8px 0 0;
+  gap: 4px;
+}
+
+.menu .menu-items>a.menu-social-link {
+  flex: 0 0 auto;
+  padding: 8px;
+  margin-right: 0 !important;
+  opacity: 1;
+  color: #666666;
+}
+
+.menu .menu-items>a.menu-social-link:hover {
+  color: #005cbf;
+  opacity: 1;
+}
+
+html.dark-mode .menu .menu-items>a.menu-social-link {
+  color: #b0b0b0;
+}
+
+html.dark-mode .menu .menu-items>a.menu-social-link:hover {
+  color: #7eb8ff;
+}
+
+.menu .menu-items>a.menu-social-link svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Das X-Logo ist ein schwarzes PNG: im hellen Modus unverändert lassen,
+   nur im Dark Mode invertieren. */
+.menu .menu-items>a.menu-social-link.menu-social-link-x .icon-x {
+  width: 18px;
+  height: 18px;
+  display: block;
+  filter: none;
+  opacity: 0.6;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.menu .menu-items>a.menu-social-link.menu-social-link-x:hover .icon-x {
+  opacity: 1;
+}
+
+html.dark-mode .menu .menu-items>a.menu-social-link.menu-social-link-x .icon-x {
+  filter: invert(1);
+  opacity: 0.75;
+}
+
+html.dark-mode .menu .menu-items>a.menu-social-link.menu-social-link-x:hover .icon-x {
+  opacity: 1;
+}
+
+/* Hamburger-Icon ist ein helles PNG — auf heller Leiste invertieren. */
+.menu .menu-button img {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+html.dark-mode .menu .menu-button img {
+  filter: none;
+  opacity: 0.8;
+}
+
+/*************************************************************************
+ * 2. Seitengerüst
+ *************************************************************************/
+
+.content-table {
+  padding: 60px 20px 80px 20px;
+}
+
+/* Das Template gibt jedem .flex-item 20px seitliche Margins. Damit stünde
+   der About-Text 20px weiter innen als der Name darüber — für ein
+   linksbündiges Layout muss die Kante durchlaufen. */
+.content .flex-item {
+  margin: 0;
+}
 
 .content-table>div:first-child>div:first-child>h2:first-child {
   margin-top: 0;
 }
 
+/* Lesespalte. Der Container ist 900px breit, was bei 16px auf rund 110
+   Zeichen pro Zeile hinausliefe — weit über den 45-75, die noch angenehm
+   lesbar sind. */
+.content p.text,
+.content p.text-small-margin {
+  max-width: 68ch;
+}
+
+/*************************************************************************
+ * 3. Profil-Kopf
+ *************************************************************************/
+
+.profile-header {
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 20px;
+}
+
+.profile-header .flex-item {
+  margin: 0;
+}
+
 .profile-image-wrap {
   position: relative;
   display: inline-block;
-  width: 180px;
-  margin: 15px 0;
+  width: 140px;
+  margin: 0;
 }
 
 .profile-image-wrap #me {
@@ -20,13 +188,48 @@
   border-radius: 50%;
 }
 
+html.dark-mode .profile-image-wrap #me {
+  box-shadow: 0 0 0 1px #2a2a2a;
+}
+
+/* Name trägt die Seite: eine Stufe über der Template-Skala. */
+.profile-identity h1 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+/* Zugehörigkeit ist sekundär und wird zurückgenommen, statt den Namen
+   darüber zusätzlich zu verstärken. */
+.profile-identity .text {
+  margin: 8px 0 0 0;
+  max-width: none;
+  color: #666666;
+}
+
+html.dark-mode .profile-identity .text {
+  color: #b0b0b0;
+}
+
+/* Das führende <br> im Markup erzeugt sonst eine leere erste Zeile. */
+.profile-identity .text br:first-child {
+  display: none;
+}
+
+.profile-identity .text img {
+  vertical-align: -3px;
+  margin-right: 4px;
+}
+
+/* Toggles auf dem Foto: kleiner und ruhiger als im Ausgangszustand. */
 .profile-image-wrap .profile-lang-toggle,
 .profile-image-wrap .profile-dark-toggle {
   position: absolute;
-  bottom: 8px;
+  bottom: 4px;
   z-index: 1;
   margin: 0;
-  padding: 5px 10px;
+  padding: 4px 8px;
   font-size: 11px;
   line-height: 1.2;
   border-radius: 14px;
@@ -34,17 +237,89 @@
 }
 
 .profile-lang-toggle {
-  right: 8px;
+  right: 4px;
 }
 
 .profile-dark-toggle {
-  left: 8px;
+  left: 4px;
   min-width: 32px;
-  padding: 5px 8px;
-  font-size: 14px;
+  padding: 4px 8px;
+  font-size: 13px;
 }
 
-/* Dark mode */
+html.dark-mode .profile-dark-toggle {
+  background-color: #505050;
+  border-color: #707070;
+}
+
+/*************************************************************************
+ * 4. Abschnitte
+ *
+ * Überschrift, Haarlinie und Inhalt lesen sich als eine Einheit. Die Linie
+ * endet an der Lesespalte, statt über die volle Containerbreite zu laufen.
+ *************************************************************************/
+
+.content h2 {
+  margin-top: 48px;
+  font-size: 24px;
+  letter-spacing: -0.2px;
+}
+
+.content h2+hr {
+  max-width: 68ch;
+  margin: 12px 0 20px 0;
+}
+
+html.dark-mode hr {
+  background: #333333;
+}
+
+/*************************************************************************
+ * 5. Publikationen
+ *
+ * Meta-Zeile als Label: kleiner und leiser als der Titel, den sie
+ * beschreibt. Der Titel selbst bleibt unverstärkt.
+ *************************************************************************/
+
+/* Die [C1]/[C2]-Zähler des Templates sind Konferenz-Notation und passen
+   nicht zu Newslettern. */
+ol.publication li p:before {
+  content: none;
+}
+
+.publication-title {
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 1.35;
+  max-width: 68ch;
+}
+
+.publication {
+  margin: 8px 0 0 0;
+}
+
+.publication .text-small-margin {
+  color: #666666;
+  line-height: 1.6;
+}
+
+html.dark-mode .publication .text-small-margin {
+  color: #b0b0b0;
+}
+
+.publication .text-small-margin b {
+  font-weight: 700;
+  color: #333333;
+}
+
+html.dark-mode .publication .text-small-margin b {
+  color: #e0e0e0;
+}
+
+/*************************************************************************
+ * 6. Dark Mode — Grundflächen und Text
+ *************************************************************************/
+
 html.dark-mode,
 html.dark-mode body {
   background-color: #121212;
@@ -55,27 +330,6 @@ html.dark-mode h1,
 html.dark-mode h2,
 html.dark-mode h3 {
   color: #f2f2f2;
-}
-
-html.dark-mode hr {
-  background: #444444;
-}
-
-html.dark-mode .content p a,
-html.dark-mode .content ul a,
-html.dark-mode .content ol a {
-  color: #7eb8ff;
-}
-
-html.dark-mode .content p a:hover,
-html.dark-mode .content ul a:hover,
-html.dark-mode .content ol a:hover {
-  color: #a8d4ff;
-}
-
-html.dark-mode .menu-container {
-  background-color: #1a1a1a;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 html.dark-mode .menu .menu-items .dropdown .dropdown-content {
@@ -105,68 +359,90 @@ html.dark-mode .custom-button-flat {
   color: #e0e0e0;
 }
 
-html.dark-mode .profile-dark-toggle {
-  background-color: #505050;
-  border-color: #707070;
+/*************************************************************************
+ * 7. Links
+ *
+ * Farbe ist nicht der einzige Hinweis: Links im Inhalt sind dezent
+ * unterstrichen.
+ *************************************************************************/
+
+.content p a,
+.content ul a,
+.content ol a {
+  color: #005cbf;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(0, 92, 191, 0.35);
+  transition: text-decoration-color 0.1s, color 0.1s;
 }
 
-.menu .menu-items > a.menu-social-link {
-  flex: 0 0 auto;
-  padding: 6px;
-  opacity: 0.85;
+.content p a:hover,
+.content ul a:hover,
+.content ol a:hover {
+  text-decoration-color: currentColor;
 }
 
-.menu .menu-items > a.menu-social-link:hover {
-  opacity: 1;
-  color: #ffffff;
+html.dark-mode .content p a,
+html.dark-mode .content ul a,
+html.dark-mode .content ol a {
+  color: #7eb8ff;
+  text-decoration-color: rgba(126, 184, 255, 0.4);
 }
 
-.menu .menu-items > a.menu-social-link svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-  flex-shrink: 0;
-}
-
-.menu .menu-items > a.menu-social-link.menu-social-link-x .icon-x {
-  width: 20px;
-  height: 20px;
-  display: block;
-  filter: invert(1);
-  opacity: 0.85;
-}
-
-.menu .menu-items > a.menu-social-link.menu-social-link-x:hover .icon-x {
-  opacity: 1;
-}
-
-.site-copyright {
-  position: fixed;
-  right: 14px;
-  bottom: 12px;
-  z-index: 3;
-  margin: 0;
-  padding: 0;
-  font-size: 11px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  text-align: right;
-  max-width: min(300px, calc(100vw - 28px));
-  pointer-events: none;
-  user-select: none;
-}
-
-html:not(.dark-mode) .site-copyright {
-  color: rgba(90, 90, 90, 0.9);
+html.dark-mode .content p a:hover,
+html.dark-mode .content ul a:hover,
+html.dark-mode .content ol a:hover {
+  color: #a8d4ff;
 }
 
 /*************************************************************************
- * Barrierefreiheit & Feinschliff (siehe .claude/skills/design/SKILL.md)
+ * Blocksatz für die About-Absätze
+ *
+ * Nur für die beiden langen Fließtextblöcke — kurze Zeilen wie die
+ * Zugehörigkeitszeile oder die Publikations-Meta würden im Blocksatz
+ * auseinandergerissen.
+ *
+ * Silbentrennung ist dabei Pflicht, sonst entstehen die typischen Löcher
+ * zwischen den Wörtern. Sie funktioniert, weil lang-toggle.js das
+ * lang-Attribut auf <html> und den Absätzen beim Umschalten mitführt —
+ * der Browser trennt dadurch nach deutschen bzw. englischen Regeln.
  *************************************************************************/
 
-/* frame.css setzt global `a { outline: none }` und entfernt damit den
-   Tastatur-Fokusring. Hier wieder herstellen — sichtbarer Fokus ist Pflicht. */
+#about-intro,
+#about-extra {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+}
+
+/* Auf schmalen Spalten hat der Blocksatz zu wenig Wörter pro Zeile, um die
+   Lücken sinnvoll zu verteilen. */
+@media screen and (max-width: 480px) {
+
+  #about-intro,
+  #about-extra {
+    text-align: left;
+  }
+}
+
+/* Lange URLs und Titel dürfen den Viewport nicht sprengen. `break-word`
+   statt `anywhere`, weil `anywhere` im Blocksatz auch dann mitten im Wort
+   umbricht, wenn es nicht nötig wäre. */
+.content p,
+.content li,
+.content h3 {
+  overflow-wrap: break-word;
+}
+
+/*************************************************************************
+ * 8. Barrierefreiheit
+ *
+ * frame.css setzt global `a { outline: none }` und entfernt damit den
+ * Tastatur-Fokusring. Hier wieder herstellen.
+ *************************************************************************/
+
 a:focus-visible,
 button:focus-visible,
 .custom-button:focus-visible,
@@ -183,71 +459,6 @@ html.dark-mode .menu-button:focus-visible {
   outline-color: #7eb8ff;
 }
 
-/* Links im Inhalt: Farbe darf nicht der einzige Hinweis sein, dass es ein
-   Link ist. Dezente Unterstreichung statt reiner Farbcodierung. */
-.content p a,
-.content ul a,
-.content ol a {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  text-decoration-color: rgba(0, 92, 191, 0.4);
-  transition: text-decoration-color 0.1s, color 0.1s;
-}
-
-.content p a:hover,
-.content ul a:hover,
-.content ol a:hover {
-  text-decoration-color: currentColor;
-}
-
-html.dark-mode .content p a,
-html.dark-mode .content ul a,
-html.dark-mode .content ol a {
-  text-decoration-color: rgba(126, 184, 255, 0.45);
-}
-
-/* Lange URLs und Titel dürfen den Viewport nicht sprengen. */
-.content p,
-.content li,
-.content h3 {
-  overflow-wrap: anywhere;
-}
-
-/* Publikationen: Meta-Zeile als sekundärer Text abschwächen, statt den
-   Titel darüber zu verstärken. */
-.publication .text-small-margin {
-  color: #666666;
-}
-
-html.dark-mode .publication .text-small-margin {
-  color: #b0b0b0;
-}
-
-.publication .text-small-margin b {
-  color: #333333;
-}
-
-html.dark-mode .publication .text-small-margin b {
-  color: #e0e0e0;
-}
-
-/* Publikationstitel etwas näher an ihre Meta-Zeile rücken: Nähe zeigt
-   Zugehörigkeit, der Abstand zum nächsten Eintrag bleibt größer. */
-.publication-title {
-  margin-top: 30px;
-}
-
-.publication {
-  margin-top: 5px;
-}
-
-/* Profilbild im Dark Mode vom Hintergrund absetzen. */
-html.dark-mode .profile-image-wrap #me {
-  box-shadow: 0 0 0 1px #3a3a3a;
-}
-
-/* Bewegung reduzieren, wenn das System danach fragt. */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -260,7 +471,18 @@ html.dark-mode .profile-image-wrap #me {
   }
 }
 
+/*************************************************************************
+ * 9. Responsive
+ *************************************************************************/
+
 @media screen and (max-width: 750px) {
+
+  /* Im aufgeklappten Menü sind die Icons zentriert — der optische Ausgleich
+     für die rechte Kante ist dort falsch. */
+  .menu .menu-items {
+    margin: 0;
+  }
+
   .menu .menu-items.active {
     display: flex;
     flex-direction: row;
@@ -271,38 +493,54 @@ html.dark-mode .profile-image-wrap #me {
     padding: 8px 0 12px;
   }
 
-  .menu .menu-items.active > a.menu-social-link {
+  .menu .menu-items.active>a.menu-social-link {
     display: flex;
     justify-content: center;
     align-items: center;
     width: auto;
     border-top: none;
-    padding: 10px 14px;
+    padding: 12px 16px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .content-table {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .profile-header {
+    gap: 20px;
+  }
+
+  .profile-image-wrap {
+    width: 110px;
+  }
+
+  .profile-identity h1 {
+    font-size: 32px;
+  }
+
+  .content h2 {
+    margin-top: 40px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .content-table {
-    padding: 24px 16px;
-  }
-
-  .flex-item {
-    margin: 0 10px;
+    padding: 32px 20px 48px 20px;
   }
 
   .profile-header {
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .profile-header .profile-image-wrap {
-    width: 140px;
-    margin: 10px auto;
+  .profile-image-wrap {
+    width: 120px;
   }
 
-  .site-copyright {
-    right: 10px;
-    bottom: 8px;
-    font-size: 10px;
+  .profile-identity h1 {
+    font-size: 30px;
   }
 }
