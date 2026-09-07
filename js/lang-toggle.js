@@ -29,6 +29,7 @@
     blocks.forEach(function (block) {
       block.el.textContent = block.texts[currentLang];
       block.el.setAttribute('data-lang', currentLang);
+      block.el.setAttribute('lang', currentLang);
     });
     toggleBtn.textContent = currentLang === 'en' ? 'DE' : 'EN';
   }
