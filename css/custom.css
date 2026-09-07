@@ -44,6 +44,14 @@
   font-size: 14px;
 }
 
+/* About-Text im Blocksatz */
+#about-intro,
+#about-extra {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 /* Dark mode */
 html.dark-mode,
 html.dark-mode body {
