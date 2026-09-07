@@ -161,6 +161,105 @@ html:not(.dark-mode) .site-copyright {
   color: rgba(90, 90, 90, 0.9);
 }
 
+/*************************************************************************
+ * Barrierefreiheit & Feinschliff (siehe .claude/skills/design/SKILL.md)
+ *************************************************************************/
+
+/* frame.css setzt global `a { outline: none }` und entfernt damit den
+   Tastatur-Fokusring. Hier wieder herstellen — sichtbarer Fokus ist Pflicht. */
+a:focus-visible,
+button:focus-visible,
+.custom-button:focus-visible,
+.menu-button:focus-visible {
+  outline: 2px solid #005cbf;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+html.dark-mode a:focus-visible,
+html.dark-mode button:focus-visible,
+html.dark-mode .custom-button:focus-visible,
+html.dark-mode .menu-button:focus-visible {
+  outline-color: #7eb8ff;
+}
+
+/* Links im Inhalt: Farbe darf nicht der einzige Hinweis sein, dass es ein
+   Link ist. Dezente Unterstreichung statt reiner Farbcodierung. */
+.content p a,
+.content ul a,
+.content ol a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(0, 92, 191, 0.4);
+  transition: text-decoration-color 0.1s, color 0.1s;
+}
+
+.content p a:hover,
+.content ul a:hover,
+.content ol a:hover {
+  text-decoration-color: currentColor;
+}
+
+html.dark-mode .content p a,
+html.dark-mode .content ul a,
+html.dark-mode .content ol a {
+  text-decoration-color: rgba(126, 184, 255, 0.45);
+}
+
+/* Lange URLs und Titel dürfen den Viewport nicht sprengen. */
+.content p,
+.content li,
+.content h3 {
+  overflow-wrap: anywhere;
+}
+
+/* Publikationen: Meta-Zeile als sekundärer Text abschwächen, statt den
+   Titel darüber zu verstärken. */
+.publication .text-small-margin {
+  color: #666666;
+}
+
+html.dark-mode .publication .text-small-margin {
+  color: #b0b0b0;
+}
+
+.publication .text-small-margin b {
+  color: #333333;
+}
+
+html.dark-mode .publication .text-small-margin b {
+  color: #e0e0e0;
+}
+
+/* Publikationstitel etwas näher an ihre Meta-Zeile rücken: Nähe zeigt
+   Zugehörigkeit, der Abstand zum nächsten Eintrag bleibt größer. */
+.publication-title {
+  margin-top: 30px;
+}
+
+.publication {
+  margin-top: 5px;
+}
+
+/* Profilbild im Dark Mode vom Hintergrund absetzen. */
+html.dark-mode .profile-image-wrap #me {
+  box-shadow: 0 0 0 1px #3a3a3a;
+}
+
+/* Bewegung reduzieren, wenn das System danach fragt. */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media screen and (max-width: 750px) {
   .menu .menu-items.active {
     display: flex;
