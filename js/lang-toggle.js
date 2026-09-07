@@ -29,8 +29,16 @@
     blocks.forEach(function (block) {
       block.el.textContent = block.texts[currentLang];
       block.el.setAttribute('data-lang', currentLang);
+      block.el.setAttribute('lang', currentLang);
     });
+    document.documentElement.setAttribute('lang', currentLang);
     toggleBtn.textContent = currentLang === 'en' ? 'DE' : 'EN';
+    toggleBtn.setAttribute(
+      'aria-label',
+      currentLang === 'en'
+        ? 'Vorstellungstext auf Deutsch anzeigen'
+        : 'Show introduction in English'
+    );
   }
 
   toggleBtn.addEventListener('click', function () {
