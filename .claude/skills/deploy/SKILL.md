@@ -32,7 +32,6 @@ Vor jedem Deploy:
 - [ ] Die manuelle Checkliste aus `.claude/rules/testing.md` ist lokal
       durchlaufen (`python3 -m http.server 8000`).
 - [ ] Keine Konsolenfehler, Dark Mode und Sprach-Toggle funktionieren.
-- [ ] Cookie-Banner erscheint im Inkognito-Fenster korrekt.
 - [ ] Neue Seiten stehen in `sitemap.xml`.
 - [ ] Keine Secrets oder privaten Dateien im Diff (im Zweifel den
       `security-auditor`-Agent laufen lassen).
@@ -58,7 +57,7 @@ curl -sI https://silasmilch.eu | head -n 1
 ```
 
 Dann die Live-Seite mit hartem Reload prüfen (Caching!): Nav lädt, Bilder da,
-Dark Mode, Sprach-Toggle, Cookie-Banner. Berichte ehrlich, was du verifizieren
+Dark Mode, Sprach-Toggle. Berichte ehrlich, was du verifizieren
 konntest und was Silas selbst im Browser ansehen muss.
 
 ## Rollback

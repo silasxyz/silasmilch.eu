@@ -15,7 +15,7 @@ Aktueller Stand:
 Fokus (leer = alle Änderungen): $ARGUMENTS
 
 Starte den `code-reviewer`-Agent auf diesen Änderungen. Wenn die Änderungen
-Analytics, Cookies, externe Skripte oder die Consent-Logik berühren, starte
+Analytics, Cookies oder externe Skripte berühren, starte
 zusätzlich den `security-auditor`-Agent — beide parallel in einer Nachricht.
 
 Fasse die Ergebnisse anschließend zusammen: Blocker zuerst, dann der Rest, je

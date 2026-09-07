@@ -19,12 +19,10 @@ There is no dev server, test suite, linter, or build command in this repo. To pr
 - `css/`
   - [frame.css](css/frame.css) and [controls.css](css/controls.css) — vendored from the upstream template (see below); header comments say not to edit these directly, put custom styles in `custom.css` instead.
   - [custom.css](css/custom.css) — site-specific overrides: profile image styling, dark-mode color scheme (`html.dark-mode`), menu social-icon styling, the fixed-position copyright text.
-  - [cookie-banner.css](css/cookie-banner.css) — styles for the cookie consent banner.
 - `js/`
   - [menu.js](js/menu.js) — loads `menu.html` into the page and wires up the mobile hamburger menu toggle.
   - [lang-toggle.js](js/lang-toggle.js) — hardcodes the EN/DE About-section text and swaps it on click of the `#lang-toggle-about` button; also auto-triggers once on page load (site defaults to German text shown first despite `en` being the initial `data-lang`).
   - [dark-mode.js](js/dark-mode.js) — toggles the `dark-mode` class on `<html>` and persists the choice to `localStorage` (`darkMode` key). `index.html` also has an inline pre-render script that reads this same key to avoid a flash of the wrong theme.
-  - [cookie-banner.js](js/cookie-banner.js) — builds and shows a simple accept/reject cookie banner, storing the choice in a `cookie-consent` cookie (365-day expiry). Links to `/privacy-policy`, which does not exist in this repo.
 - `img/` — profile photo (`me.jpeg`), menu hamburger icon, X/Twitter icon.
 - [sitemap.xml](sitemap.xml), [google8bf87702d0f933fe.html](google8bf87702d0f933fe.html) — SEO/Search Console files.
 - [CNAME](CNAME) — GitHub Pages custom domain file. Currently contains `yenchiah.me`, which does **not** match the actual site domain (`silasmilch.eu` used everywhere else, e.g. in `index.html` and `sitemap.xml`) — likely a leftover from forking the template and worth double-checking before relying on GitHub Pages custom-domain routing.
@@ -40,4 +38,5 @@ The CSS in `css/frame.css` and `css/controls.css` (and the general page structur
 
 - No build/bundling: adding a new page means creating a plain `.html` file and manually wiring up the same `<link>`/`<script>` includes as `index.html`.
 - Translated text is not in the HTML — it lives as JS string literals in `lang-toggle.js`. Adding new bilingual content means editing that file, not `index.html`.
-- Dark mode state and cookie consent are both read/written via `localStorage`/cookies client-side only; there's no server-side persistence.
+- Dark mode state is read/written via `localStorage` client-side only; there's no server-side persistence.
+- There is no cookie consent banner. It was removed deliberately — don't reintroduce one without checking with Silas first.

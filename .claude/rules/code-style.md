@@ -23,7 +23,8 @@ Gilt für alle Dateien in diesem Repo (plain HTML/CSS/jQuery, kein Build-Step).
 - `css/frame.css` und `css/controls.css` sind vom Upstream-Template
   (yenchiah/project-website-template) — **nicht editieren**.
 - Alle eigenen Styles kommen nach `css/custom.css`, thematisch abgegrenzte
-  Komponenten bekommen eine eigene Datei (Muster: `css/cookie-banner.css`).
+  Komponenten dürfen eine eigene Datei bekommen, die dann in `index.html`
+  verlinkt werden muss.
 - Klassennamen in `kebab-case`.
 - Dark Mode immer mitdenken: Farben unter `html.dark-mode` gegenprüfen, nie eine
   Farbe nur für den hellen Modus setzen.
@@ -37,8 +38,8 @@ Gilt für alle Dateien in diesem Repo (plain HTML/CSS/jQuery, kein Build-Step).
   Globals anzulegen.
 - `const`/`let` statt `var`, Strings in einfachen Anführungszeichen, Semikolons
   setzen.
-- Persistenz nur clientseitig: `localStorage` (z. B. `darkMode`) oder Cookies
-  (z. B. `cookie-consent`). Es gibt keinen Server.
+- Persistenz nur clientseitig über `localStorage` (z. B. `darkMode`). Es gibt
+  keinen Server. Keine eigenen Cookies setzen.
 
 ## Zweisprachigkeit (DE/EN)
 

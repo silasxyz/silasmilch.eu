@@ -23,8 +23,9 @@ Seite aus plain HTML, CSS und jQuery ohne Build-Step, Paketmanager oder Tests.
   `html.dark-mode` in `css/custom.css`. Hardcodierte helle Farben melden.
 - **Zweisprachigkeit**: Neuer sichtbarer Text muss DE und EN in
   `js/lang-toggle.js` haben, nicht im HTML hardcodiert sein.
-- **Consent**: Neue Tracking-/Analytics-Aufrufe müssen das `cookie-consent`-
-  Cookie respektieren.
+- **Cookies**: Die Seite setzt bewusst keine eigenen Cookies. Neuer Code, der
+  `document.cookie` schreibt oder einen Consent-Banner einführt, ist ein
+  Rücksprache-Fall — melden statt durchwinken.
 - **Kein Scope-Creep**: keine neue `package.json`, kein Framework, keine neuen
   CDN-Abhängigkeiten.
 - **Responsive**: Neue Layouts dürfen den mobilen Viewport nicht brechen; keine

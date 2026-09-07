@@ -27,12 +27,11 @@ gespeicherter Seiten-Snapshot) dabei ignorieren.
    Vertrauenswürdig? Wenn möglich selbst hosten, sonst `integrity` und
    `crossorigin` setzen.
 4. **Links** — `target="_blank"` braucht `rel="noopener noreferrer"`.
-5. **Cookies** — `js/cookie-banner.js` prüfen: `Secure`, `SameSite=Lax` (oder
-   strenger) und ein sinnvoller `path` sollten gesetzt sein.
-6. **Consent** — feuert Tracking (gtag, Vercel Analytics), bevor zugestimmt
-   wurde, oder trotz Ablehnung? Das ist ein Blocker.
-7. **Datenschutz** — jeder eingebundene Drittanbieter muss in der
-   Datenschutzerklärung stehen; der Banner verlinkt auf `/privacy-policy`.
+5. **Cookies** — die Seite setzt bewusst keine eigenen Cookies. Jeder neue
+   `document.cookie`-Schreibzugriff ist ein Fund.
+6. **Tracking** — welche Drittanbieter laden (aktuell gtag und Vercel
+   Analytics)? Setzt einer davon Cookies oder verarbeitet personenbezogene
+   Daten, ist das meldepflichtig, weil es ohne Consent-Banner läuft.
 8. **Ungewollt ausgelieferte Dateien** — Backups, `.env`, Notizen, private
    Dokumente, die statisch mit deployed würden.
 9. **Mixed Content** — `http://`-Ressourcen auf einer HTTPS-Seite.

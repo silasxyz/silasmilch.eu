@@ -12,16 +12,15 @@ Weitere Tracker, Fonts, Werbe- oder Embed-Skripte nur nach Rücksprache
 hinzufügen. Assets möglichst selbst hosten (`img/`, `css/`, `js/`) statt von
 fremden CDNs laden.
 
-## Consent
+## Cookies & Consent
 
-- Der Consent-Status steht im Cookie `cookie-consent` (365 Tage), gesetzt von
-  `js/cookie-banner.js`.
-- Alles, was Tracking macht, muss diesen Status respektieren: **kein**
-  Analytics-Request vor einem "accept", und nach einem "reject" gar keiner.
-- Der Banner verlinkt auf `/privacy-policy`. Diese Seite existiert im Repo noch
-  nicht — beim Anlegen als plain `privacy-policy.html` mit den gleichen
-  Includes wie `index.html` bauen.
-- Neue Drittanbieter müssen in der Datenschutzerklärung auftauchen.
+- Die Seite setzt **keine eigenen Cookies**. Der frühere Consent-Banner wurde
+  bewusst entfernt — nicht ohne Rücksprache mit Silas wieder einführen.
+- Eigener Zustand gehört in `localStorage` (Muster: `darkMode`), nicht in ein
+  Cookie.
+- Wenn ein neuer Drittanbieter Cookies setzt oder personenbezogene Daten
+  verarbeitet, ist das ein Rücksprache-Fall: dann braucht es wieder Consent und
+  eine Datenschutzerklärung.
 
 ## Fetches im Browser
 

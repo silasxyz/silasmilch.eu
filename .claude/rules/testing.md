@@ -22,9 +22,6 @@ Bei Änderungen an Layout, CSS oder JS jeweils prüfen:
 - [ ] Dark-Mode-Toggle schaltet um **und** überlebt einen Reload
       (`localStorage`-Key `darkMode`), ohne Aufblitzen des falschen Themes.
 - [ ] Sprach-Toggle wechselt den About-Text DE ↔ EN.
-- [ ] Cookie-Banner erscheint im Inkognito-Fenster, Accept und Reject setzen
-      beide das `cookie-consent`-Cookie und blenden das Banner aus; nach einem
-      Reload kommt es nicht wieder.
 - [ ] Browser-Konsole ist frei von Fehlern.
 - [ ] Responsive: einmal in Mobil- und einmal in Desktop-Breite ansehen.
 
